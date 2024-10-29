@@ -3,8 +3,8 @@
     "name": "django-app",
     "image": "${docker_image_url_django}",
     "essential": true,
-    "cpu": 10,
-    "memory": 512,
+    "cpu": 1,
+    "memory": 256,
     "links": [],
     "portMappings": [
       {

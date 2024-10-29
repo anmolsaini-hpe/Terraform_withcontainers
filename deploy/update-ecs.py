@@ -14,7 +14,7 @@ def get_current_task_definition(client, cluster, service):
 @click.option("--cluster", help="Name of the ECS cluster", required=True)
 @click.option("--service", help="Name of the ECS service", required=True)
 def deploy(cluster, service):
-    client = boto3.client("ecs")
+    client = boto3.client("ecs", region_name="us-east-1")
 
     response = get_current_task_definition(client, cluster, service)
     container_definition = response["taskDefinition"]["containerDefinitions"][0].copy()
@@ -29,6 +29,7 @@ def deploy(cluster, service):
     response = client.update_service(
         cluster=cluster, service=service, taskDefinition=new_task_arn,
     )
+    print(response)
 
 
 if __name__ == "__main__":
